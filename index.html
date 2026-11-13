@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050b0d">
+  <title>Charge Go — EV Charging Stations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kantumruy+Pro:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+
+<header>
+  <h1>⚡ CHARGE GO</h1>
+  <button id="langBtn" type="button" aria-label="Switch language">🌐 English</button>
+</header>
+
+<main>
+  <section class="hero">
+    <h2 id="welcome" data-i18n="welcome">សាកថ្មគ្រប់ទីកន្លែងជាមួយ Charge Go</h2>
+    <p data-i18n="tagline">ស្វែងរកស្ថានីយ៍សាកថ្មគ្រប់ទីកន្លែង!</p>
+  </section>
+
+  <section class="points">
+    <div class="points-card">
+      <h2 data-i18n="myPoints">⭐ ពិន្ទុរបស់ខ្ញុំ</h2>
+      <p id="points" class="points-value" aria-live="polite">0</p>
+      <p class="hint" data-i18n="pointsHint">រកពិន្ទុដោយស្កេន QR នៅស្ថានីយ៍សាកថ្ម</p>
+    </div>
+  </section>
+
+  <section class="locations">
+    <h2 id="locationTitle" data-i18n="locationTitle">📍 ទីតាំងសាកថ្ម</h2>
+
+    <select id="city" onchange="showLocations()" aria-label="Filter by province">
+      <option value="all" data-i18n="allLocations">គ្រប់ខេត្ត / All Provinces</option>
+      <option value="Banteay Meanchey">បន្ទាយមានជ័យ</option>
+      <option value="Battambang">បាត់ដំបង</option>
+      <option value="Kampong Cham">កំពង់ចាម</option>
+      <option value="Kampong Chhnang">កំពង់ឆ្នាំង</option>
+      <option value="Kampong Speu">កំពង់ស្ពឺ</option>
+      <option value="Kampong Thom">កំពង់ធំ</option>
+      <option value="Kampot">កំពត</option>
+      <option value="Kandal">កណ្តាល</option>
+      <option value="Koh Kong">កោះកុង</option>
+      <option value="Kratie">ក្រចេះ</option>
+      <option value="Mondulkiri">មណ្ឌលគិរី</option>
+      <option value="Phnom Penh">ភ្នំពេញ</option>
+      <option value="Preah Vihear">ព្រះវិហារ</option>
+      <option value="Prey Veng">ព្រៃវែង</option>
+      <option value="Pursat">ពោធិ៍សាត់</option>
+      <option value="Ratanakiri">រតនគិរី</option>
+      <option value="Siem Reap">សៀមរាប</option>
+      <option value="Preah Sihanouk">ព្រះសីហនុ</option>
+      <option value="Stung Treng">ស្ទឹងត្រែង</option>
+      <option value="Svay Rieng">ស្វាយរៀង</option>
+      <option value="Takeo">តាកែវ</option>
+      <option value="Oddar Meanchey">ឧត្តរមានជ័យ</option>
+      <option value="Kep">កែប</option>
+      <option value="Pailin">ប៉ៃលិន</option>
+      <option value="Tboung Khmum">ត្បូងឃ្មុំ</option>
+    </select>
+
+    <div class="locations-grid">
+      <div id="locationList"></div>
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <section class="scanner">
+    <h2 data-i18n="scannerTitle">▦ ស្កេន QR Code</h2>
+    <div class="scanner-box">
+      <div id="reader"></div>
+      <p id="result" data-i18n="scanHint" aria-live="polite">ស្កេន QR នៅស្ថានីយ៍សាកថ្ម ដើម្បីប្រមូលពិន្ទុ</p>
+    </div>
+  </section>
+
+  <section class="reward">
+    <div class="reward-card">
+      <h2 data-i18n="rewardsTitle">🎁 រង្វាន់</h2>
+      <p class="hint" data-i18n="rewardRule">100 ពិន្ទុ = ប័ណ្ណបញ្ចុះតម្លៃ</p>
+      <button id="redeemBtn" type="button" class="btn-primary" data-i18n="redeem">ប្តូរពិន្ទុ</button>
+      <p id="rewardResult" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p data-i18n="footer">Charge Go — សាកថ្ម • ស្កេន • ប្រមូលពិន្ទុ • ទទួលរង្វាន់</p>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
